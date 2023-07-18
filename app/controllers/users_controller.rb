@@ -13,15 +13,16 @@ class UsersController < ApplicationController
 
   def show
     @user=User.find_by(id: params[:id])
+
   end
   def create
-       user = User.new(user_params)
-      if user.save
-        session[:id]=user.id
-       
-          flash[:notice]="ユーザー登録が完了しました"
-          redirect_to user_path(user.id)
+       @user = User.new(user_params)
+        session[:id]=@user.id
+      if @user.save
+         flash[:success] = "Welcome to the Sample App!"
+          redirect_to @user
       else
+        flash.now[:error] = 'Invalid email/password combination'
         render :new
       end
     

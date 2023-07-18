@@ -1,17 +1,24 @@
+<% provide(:title, 'Sign up') %>
 <h1>Users#new</h1>
 <p>Find me in app/views/users/new.html.erb</p>
-<%= form_for @user,url: users_create_path do |f| %>
-<p><%= f.label :name %>
-<%= f.text_field  :name %></p>
 
-<p><%= f.label :email %>
-<%= f.text_field  :email %></p>
-
-<p><%= f.label :password %>
-<%= f.password_field  :password%></p>
-<p><%= f.label :password_confirmation %>
-<%= f.password_field  :password_confirmation %></p>
-<%=f.submit "Let`s go" , class: "btn btn-lg btn-primary"%>
-<%end%>
-
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+      
+    <%= form_for @user,url: users_create_path, local: true do |f| %>
+     <%= render 'shared/error_messages', object: f.object  %>
+    <p><%= f.label :name %>
+    <%= f.text_field  :name , class: 'form-control' %></p>
+    
+    <p><%= f.label :email %>
+    <%= f.email_field  :email, class: 'form-control' %></p>
+    
+    <p><%= f.label :password %>
+    <%= f.password_field  :password,class: 'form-control'%></p>
+    <p><%= f.label :password_confirmation %>
+    <%= f.password_field  :password_confirmation, class: 'form-control' %></p>
+    <%=f.submit "Let`s go" , class: "btn btn-lg btn-primary"%>
+    <%end%>
+ </div>
+</div>
 <%=link_to "back",users_index_path%>
